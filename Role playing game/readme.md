@@ -40,4 +40,4 @@ Feel free to fork this repository and contribute to the development of **Dragon 
 
 ## License
 
-This project is open source and available under the [MIT License].
+This project is open source and available under the [MIT License] and created under the guidance of freeCodeCamp.org.
