@@ -58,16 +58,40 @@ const purchaseBtn = document.getElementById("purchase-btn")
 
 const test = document.getElementById("test")
 const cidElement = document.getElementById("cid-element")
-const changeDue =0;
+const changeDue =document.getElementById(`change-due`);
 cidElement.innerHTML = cid
 .reduce((acc,el)=> acc+ `${currencyNameMap[el[0]]}: $ ${+el[1]}<br>`,"")
+
 purchaseBtn.addEventListener("click",() => { // console.log(`ho submittato e cashInput is ${cashInput.value}`);
+ let status = "OPEN"
+ let reply =""
+ let change =0;
 const cashInput = cashInputElement.value;
 const totalCash = cid.reduce( (acc,el)=> el[1]+acc,0).toFixed(2)
 console.log(`total money in the cid${totalCash}`)
-  })
-const updateStatus = (cid, status)=>{
+if (cashInput<price){
+  window.alert("Customer does not have enough money to purchase the item");
+} else if(cashInput===price){
+changeDue.innerText = "No change due - customer paid with exact cash"
+} else{  //starts the else when a change is due
 
+  change = cashInput - price 
+  reply = cid.reverse().reduce((acc,el)=>{
+    let maxCoin =Math.floor(change/currencyValue[el[0]]);
+    if (maxCoin===0){
+      return acc;
+    } else{
+      let amount = Math.min((maxCoin*currencyValue[el[0]]).toFixed(2),el[1])
+      el[1]=el[1]-amount;
+      change = change -amount;
+      return  `${el[0]} $${amount} ` + acc
+  }},"")
 
-  return
+console.log(`${reply} and change is ${change.toFixed(2)}`)
 }
+if (change>0){
+  status ="CLOSED"
+}
+changeDue.innerText =`Status: ${status} ${reply} `
+  })
+  
