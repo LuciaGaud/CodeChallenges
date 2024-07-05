@@ -1,15 +1,5 @@
 let price = 3.26;
-let cid = [
-  ['PENNY', 1.01],
-  ['NICKEL', 2.05],
-  ['DIME', 3.1],
-  ['QUARTER', 4.25],
-  ['ONE', 90],
-  ['FIVE', 55],
-  ['TEN', 20],
-  ['TWENTY', 60],
-  ['ONE HUNDRED', 100]
-];
+let cid = [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]];
 
 const currencyNameMap = {
   PENNY: 'Pennies',
@@ -50,7 +40,7 @@ const calculate = (price, cid, cash)=>{
 return (newcid,changeDue, cidStatus)
 }
 const test2 =[0,2,3]
-const cashInputElement = document.getElementById("cash-input")
+const cashInputElement = document.getElementById("cash")
 
 const statusHtml = document.getElementById("status");
 const purchaseBtn = document.getElementById("purchase-btn")
@@ -58,40 +48,60 @@ const purchaseBtn = document.getElementById("purchase-btn")
 
 const test = document.getElementById("test")
 const cidElement = document.getElementById("cid-element")
-const changeDue =document.getElementById(`change-due`);
+const displayChangeDue =document.getElementById(`change-due`);
 cidElement.innerHTML = cid
 .reduce((acc,el)=> acc+ `${currencyNameMap[el[0]]}: $ ${+el[1]}<br>`,"")
 
 purchaseBtn.addEventListener("click",() => { // console.log(`ho submittato e cashInput is ${cashInput.value}`);
  let status = "OPEN"
  let reply =""
- let change =0;
 const cashInput = cashInputElement.value;
-const totalCash = cid.reduce( (acc,el)=> el[1]+acc,0).toFixed(2)
-console.log(`total money in the cid${totalCash}`)
+let change = (cashInput - price).toFixed(2) ;
+
+const totalCashFunction = ()=> cid.reduce( (acc,el)=> el[1]+acc,0).toFixed(2)
+const totalCash=totalCashFunction()
+console.log(`total money in the cid${totalCash} and chanhe is ${change} change > totalCash: ${change>totalCash}`)
+if(Number(change)>Number(totalCash) ){
+displayChangeDue.innerText="Status: INSUFFICIENT_FUNDS"
+return
+}
+
 if (cashInput<price){
   window.alert("Customer does not have enough money to purchase the item");
-} else if(cashInput===price){
-changeDue.innerText = "No change due - customer paid with exact cash"
-} else{  //starts the else when a change is due
-
-  change = cashInput - price 
+  return
+} 
+if(cashInput==price){
+displayChangeDue.innerText = "No change due - customer paid with exact cash"
+return
+} //starts the else when a change is due
+ 
+ 
   reply = cid.reverse().reduce((acc,el)=>{
     let maxCoin =Math.floor(change/currencyValue[el[0]]);
-    if (maxCoin===0){
-      return acc;
-    } else{
-      let amount = Math.min((maxCoin*currencyValue[el[0]]).toFixed(2),el[1])
-      el[1]=el[1]-amount;
-      change = change -amount;
-      return  `${el[0]} $${amount} ` + acc
-  }},"")
+    console.log("change is",change)
+    let amount = Math.min((maxCoin*currencyValue[el[0]]),el[1])
 
-console.log(`${reply} and change is ${change.toFixed(2)}`)
+  
+    if (amount===0){
+      return acc;
+    } else {
+      
+      el[1]=el[1]-amount;
+      change = (change -amount).toFixed(2);
+      return acc+ `${el[0]}: $${amount} `
+  }},"")
+if( Number(change)>0){
+  displayChangeDue.innerText="Status: INSUFFICIENT_FUNDS"
+return
 }
-if (change>0){
+
+if (totalCashFunction()==0 ){
+ 
   status ="CLOSED"
 }
-changeDue.innerText =`Status: ${status} ${reply} `
+
+displayChangeDue.innerHTML =`Status: ${status} ${reply}`
+
+
   })
   
