@@ -5,27 +5,23 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Learn localStorage by Building a Todo App</title>
+  <title>Cash Register</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <main>
-    <div>
+    <div class="container">
       <h1>Cash Register</h1>
-      <div id="status">dadaadad</div>
-      <div id="change-due">
-        <label for="purchase-btn"></label>
-      <button style="background-color: darkgoldenrod;" id="purchase-btn"> Purchase </button> 
-       <input id="cash-input" type="number">
-
+      <div id="status" class="status">Status: Ready</div>
+      <div class="change-due">
+        <label for="cash-input">Enter Cash:</label>
+        <input id="cash-input" type="number" placeholder="Enter amount">
+        <button id="purchase-btn">Purchase</button>
       </div>
-      <div>
-        Change in Drawer:
-        <div id="cid-element" > 
-
-        </div>
-
+      <div class="cid">
+        <h2>Change in Drawer:</h2>
+        <div id="cid-element"></div>
       </div>
     </div>
   </main>
