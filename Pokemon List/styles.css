@@ -1,9 +1,7 @@
 :root {
-  --white: #fff;
-  --light-grey: #f5f6f7;
-  --dark-grey: #0a0a23;
-  --yellow: #f1be32;
+
   --golden-yellow: #feac32;
+
 }
 
 *,
@@ -14,8 +12,16 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--dark-grey);
+#input_button{
+  padding: 2%;
+}
+
+header h1{
+  align-items: center;
+  text-align: center;
+  font-size: large;
+  padding: 1%;
+
 }
 
 main {
@@ -23,14 +29,86 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
-h1 {
-  color: var(--light-grey);
-  margin: 20px 0 40px 0;
+button{
+  border-radius: 10%;
+  text-size-adjust: true;
+  padding: 1% ;
 }
 
-div {
- 
-  background-color: white;
+.dir-or {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.block {
+  display: inline;
+  box-sizing: border-box;
+}
+
+#weight-height {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center; /* Centers items horizontally */
+  height: 100%; /* Ensures the container takes full height */
+}
+
+#weight, #height, #types {
+  border: none;
+  flex-grow: 1; /* Allows items to grow and take available space */
+
+}
+table {
+ border: #0a0a23;
+ border-style: solid;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+
+.electric{
+  background-color: var(--golden-yellow);
+}
+.flying{
+  background-color: blue;
+}
+.ghost{
+  background-color: gray;
+}
+.poison{
+  background-color: violet;
+}
+.grass{
+  background-color: green;
+}
+.fire{
+  background-color: red;
+}
+.water{
+  background-color: lightblue;
+}
+.bug{
+  background-color: lightgreen;
+}
+.normal{
+  background-color: lightpink;
+}
+.ground{
+  background-color: brown;
+}
+.fairy{
+  background-color: palevioletred;
+}
+.type{
+
+  border: solid;
+  border-radius: 10%;
 }

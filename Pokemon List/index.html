@@ -8,21 +8,24 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header>
-      
+    <header> 
       <h1 class="title">Pokemon Search App</h1>
     </header>
     <main>
       <div>
-        Search for Pokémon Name or ID:
+        Search for Pokémon Name or ID:</div>
+        <div>
+        <div class="dir-or">
         <input type="text" id="search-input" required>
-        <button id ="search-button" type="submit" placeholder="Enter your Pokemon...">Search</button>
-<div id="pokemon-name"></div>
+        <button class="electric" id ="search-button" type="submit" placeholder="Enter your Pokemon...">Search</button>
+        </div>
+<div class ="dir-or">
+<div id="name-id-img"><div id="pokemon-name"></div>
 <div id="pokemon-id"></div>
-  <div id="sprite-container"></div>
-
-<div id="weight"></div><div id="height"></div>
-<div id="types"></div>
+  <div id="sprite-container"></div></div>
+<div class="block" ><div id="weight-height"><div id="weight"></div><div id="height"></div>
+<div id="types"></div></div></div>
+</div>
 <table id="stats">
   <thead><tr><th>Base</th><th>Stats</th></tr></thead>
   <tbody>
